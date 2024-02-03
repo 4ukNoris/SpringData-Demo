@@ -27,21 +27,16 @@ public class CategoryServiceImpl implements CategoryService {
         long size = this.categoryRepository.count();
         int categoryCount = random.nextInt((int) size) + 1;
 
-       // Set<Integer> categoriesIds = fillCadegoiesSet(random,size, categoryCount);
-        Set<Integer> categoriesIds = new HashSet<>();
-        for (int i = 0; i < categoryCount; i++) {
-            int nextId = random.nextInt((int) size) + 1;
-            categoriesIds.add(nextId);
-        }
+        Set<Integer> categoriesIds = fillCategoriesSet(categoryCount, random, (int) size);
 
         List<Category> allById = this.categoryRepository.findAllById(categoriesIds);
         return new HashSet<>(allById);
     }
 
-    private Set<Integer> fillCadegoiesSet(Random random, long size, int count) {
+    private static Set<Integer> fillCategoriesSet(int categoryCount, Random random, int size) {
         Set<Integer> categoriesIds = new HashSet<>();
-        for (int i = 0; i < count; i++) {
-            int nextId = random.nextInt((int) size) + 1;
+        for (int i = 0; i < categoryCount; i++) {
+            int nextId = random.nextInt(size) + 1;
             categoriesIds.add(nextId);
         }
         return categoriesIds;
