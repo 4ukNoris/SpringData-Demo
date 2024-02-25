@@ -23,16 +23,4 @@ public enum Utils {
         marshaller.marshal(data, file);
 
     }
-
-    public static <T> void readXmlIntoFile(T data, Path filePath) throws JAXBException {
-        File file = filePath.toFile();
-
-        JAXBContext context = JAXBContext.newInstance(data.getClass());
-        Marshaller marshaller = context.createMarshaller();
-
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-        marshaller.marshal(data, file);
-
-    }
 }
